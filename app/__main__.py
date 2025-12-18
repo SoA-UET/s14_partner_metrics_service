@@ -7,6 +7,7 @@ It initializes the Flask HTTP server and the background RabbitMQ event consumers
 
 import os
 from flask import Flask, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -25,6 +26,15 @@ def create_app():
         Flask app instance
     """
     app = Flask(__name__)
+    
+    # Configure CORS
+    cors_origins = os.getenv("CORS_ALLOWED_ORIGINS", "*")
+    if cors_origins == "*":
+        CORS(app)
+    else:
+        # Split by comma and strip whitespace
+        origins_list = [origin.strip() for origin in cors_origins.split(",")]
+        CORS(app, origins=origins_list)
     
     # Get partner ID from environment
     partner_id = os.getenv("PARTNER_ID")
