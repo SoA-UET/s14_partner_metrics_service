@@ -11,7 +11,7 @@ from datetime import datetime
 
 
 # Create blueprint for partner metrics API
-partner_metrics_bp = Blueprint('partner_metrics', __name__, url_prefix='/api/v1/partner/metrics')
+partner_metrics_bp = Blueprint('partner_metrics', __name__, url_prefix='/partner/metrics')
 
 # This will be set by the main application
 _partner_metrics_service = None
