@@ -2,7 +2,6 @@ import json
 import pika
 from typing import Callable
 import os
-from ..utils.db import serialize_mongo_doc
 
 class MessageQueueService:
     """
@@ -28,7 +27,7 @@ class MessageQueueService:
         self.channel.queue_declare(queue=queue_name, durable=True)
 
     def publish_message(self, queue_name: str, message: dict):
-        body = json.dumps(serialize_mongo_doc(message))
+        body = json.dumps(message)
         
         self.channel.basic_publish(
             exchange='',
