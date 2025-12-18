@@ -1,10 +1,4 @@
-from flask import Flask
-
-from .v1 import v1
-
-def register_api_controllers(app: Flask):
-    """Register all API blueprints with the Flask app."""
-    app.register_blueprint(v1)
+# Controllers module - routes are registered directly in __main__.py
 
     @app.get('/api', strict_slashes=False)
     def get_api_versions():

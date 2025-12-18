@@ -14,8 +14,7 @@ load_dotenv()
 
 # Import service and controller
 from .services.PartnerMetricsService import PartnerMetricsService
-from .controllers.v1.partner_metrics import set_partner_metrics_service
-from .controllers import register_api_controllers
+from .controllers.v1.partner_metrics import set_partner_metrics_service, register_routes
 
 
 def create_app():
@@ -40,8 +39,8 @@ def create_app():
     # Set the service instance for the controller
     set_partner_metrics_service(metrics_service)
     
-    # Register API controllers
-    register_api_controllers(app)
+    # Register API routes
+    register_routes(app)
     
     # Add root endpoint
     @app.route('/')
